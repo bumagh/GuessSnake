@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoginCtrl : MonoBehaviour
+public class GameCtrl : MonoBehaviour
 {
     // Start is called before the first frame update
     private Button startBtn;
