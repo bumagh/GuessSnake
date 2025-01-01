@@ -1,0 +1,22 @@
+{
+    "snakes": [
+        {
+            "name": "可爱蛇",
+            "appearance": "CuteSnake",
+            "speed": 2.0,
+            "exchangeRate": 1.5
+        },
+        {
+            "name": "笑脸蛇",
+            "appearance": "SmileSnake",
+            "speed": 3.0,
+            "exchangeRate": 1.0
+        },
+        {
+            "name": "红颜蛇",
+            "appearance": "RedEyeSnake",
+            "speed": 4.0,
+            "exchangeRate": 0.8
+        }
+    ]
+}

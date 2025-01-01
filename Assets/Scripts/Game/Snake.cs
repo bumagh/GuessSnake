@@ -8,6 +8,8 @@ public class Snake : MonoBehaviour
 
     private Vector2 startPosition;  // 初始位置
 
+    public float exchangeRate { get; internal set; }
+
     // 初始化
     void Start()
     {

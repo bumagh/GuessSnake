@@ -36,4 +36,8 @@ public class SnakeManager : MonoBehaviour
             snakes[index2].transform.position = tempPosition;
         }
     }
+
+    internal void AddNewSnake()
+    {
+    }
 }
