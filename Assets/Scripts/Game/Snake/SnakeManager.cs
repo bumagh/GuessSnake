@@ -38,20 +38,40 @@ public class SnakeManager : MonoBehaviour
         }
     }
 
-    internal void AddNewSnake()
+    internal void AddNewSnake(int count = 2)
     {
         if (!SnakeConfigManager.instance.isLoad)
             SnakeConfigManager.instance.LoadSnakeConfig();
-        var config = SnakeConfigManager.instance.snakeConfigs[UnityEngine.Random.Range(0, SnakeConfigManager.instance.snakeConfigs.Count)];
-        var prefab = Resources.Load<GameObject>("Prefabs/SnakePrefab");
-        var SnakePrefabGo = Instantiate(prefab, transform);
-        Snake snake = SnakePrefabGo.GetComponent<Snake>();
-        Sprite snakeSprite = Resources.Load<Sprite>("Sprites/" + config.appearance);
-        snake.SetSprite(snakeSprite);
-        snake.snakeName = config.name;
-        snake.moveSpeed = config.speed;
-        // 其他设置
-        snake.exchangeRate = config.exchangeRate;
+        Vector3 pos1 = new Vector3(-1.71f, 3.74f, 0);//-1.71,0,1.87
+        Vector3 pos2 = new Vector3(0, 3.74f, 0);//-1.71,0,1.87
+        Vector3 pos3 = new Vector3(1.87f, 3.74f, 0);//-1.71,0,1.87
+        for (int i = 0; i < count; i++)
+        {
+            var config = SnakeConfigManager.instance.snakeConfigs[UnityEngine.Random.Range(0, SnakeConfigManager.instance.snakeConfigs.Count)];
+            var prefab = Resources.Load<GameObject>("Prefabs/SnakePrefab");
+            var SnakePrefabGo = Instantiate(prefab, transform);
+            if (count == 2)
+            {
+                SnakePrefabGo.transform.position = i == 0 ? pos1 : pos3;
+            }
+            else if (count == 3)
+            {
+                if (i == 0)
+                    SnakePrefabGo.transform.position = pos1;
+                else if (i == 1)
+                    SnakePrefabGo.transform.position = pos2;
+                else if (i == 2)
+                    SnakePrefabGo.transform.position = pos3;
+            }
+            Snake snake = SnakePrefabGo.GetComponent<Snake>();
+            Sprite snakeSprite = Resources.Load<Sprite>("Sprites/" + config.appearance);
+            snake.SetSprite(snakeSprite);
+            snake.snakeName = config.name;
+            snake.moveSpeed = config.speed;
+            // 其他设置
+            snake.exchangeRate = config.exchangeRate;
+        }
+
     }
     void ClearSnakes()
     {

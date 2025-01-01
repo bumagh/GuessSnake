@@ -12,14 +12,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        // levelCompletePanel.SetActive(false);
-        new WaitForSeconds(1);
-        snakeManager.AddNewSnake();
     }
 
     public void CompleteLevel()
     {
-        // levelCompletePanel.SetActive(true);  // 显示关卡完成界面
 
         Tools.ShowConfirm("完成关卡,继续下一关", () =>
         {

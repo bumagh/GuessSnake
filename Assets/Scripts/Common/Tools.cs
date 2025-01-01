@@ -27,4 +27,13 @@ public static class Tools
         var panel = panelObj.GetComponent<ConfirmPanel>();
         panel.Init(textStr, confirmAction, cancelAction);
     }
+    public static void ShowReward(string textStr, string imgPath, UnityAction confirmAction = null)
+    {
+        var panelPrefab = Resources.Load<GameObject>("Prefabs/Popup/RewardPanel");
+        if (panelPrefab == null)
+            return;
+        var panelObj = GameObject.Instantiate(panelPrefab);
+        var panel = panelObj.GetComponent<RewardPanel>();
+        panel.Init(textStr, imgPath, confirmAction);
+    }
 }

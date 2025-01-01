@@ -8,16 +8,16 @@ public class LevelManager : MonoBehaviour
     public float difficultyIncreaseInterval = 10f;  // 每10秒增加难度
     private float difficultyTimer;
     private int currentLevel = 1;
-    public string configFilePath = "Assets/Resources/levelConfig.json";
+    public string configFilePath = "Assets/Resources/Config/levelConfig.json";
     public List<LevelConfig> levelConfigs;
     void Update()
     {
-        difficultyTimer += Time.deltaTime;
-        if (difficultyTimer >= difficultyIncreaseInterval)
-        {
-            IncreaseDifficulty();
-            difficultyTimer = 0;
-        }
+        // difficultyTimer += Time.deltaTime;
+        // if (difficultyTimer >= difficultyIncreaseInterval)
+        // {
+        //     IncreaseDifficulty();
+        //     difficultyTimer = 0;
+        // }
     }
 
     void IncreaseDifficulty()
@@ -43,6 +43,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         LoadLevelConfigs();
+        new WaitForSeconds(1);
         LoadLevel(1);  // 加载第1关
     }
 
@@ -60,6 +61,7 @@ public class LevelManager : MonoBehaviour
         if (currentLevel != null)
         {
             Debug.Log($"加载关卡: {currentLevel.level} - {currentLevel.theme}");
+            EventManager.DispatchEvent<string, string>(EventName.GameUISetLevelInfo, currentLevel.level.ToString(), currentLevel.theme);
             // 设置背景
             SetBackground(currentLevel.background);
             // 生成蛇
@@ -82,11 +84,9 @@ public class LevelManager : MonoBehaviour
 
     void GenerateSnakes(int count, float speed, float exchangeRate)
     {
-        for (int i = 0; i < count; i++)
-        {
-            Debug.Log($"生成蛇 {i + 1}，速度: {speed}，交换频率: {exchangeRate}");
-            // 示例代码：Instantiate(snakePrefab, position, Quaternion.identity).GetComponent<Snake>().Setup(speed, exchangeRate);
-        }
+        SnakeManager.instance.AddNewSnake(count);
+        // Debug.Log($"生成蛇 {i + 1}，速度: {speed}，交换频率: {exchangeRate}");
+        // 示例代码：Instantiate(snakePrefab, position, Quaternion.identity).GetComponent<Snake>().Setup(speed, exchangeRate);
     }
 
     void SetupSpecialItem(string itemName, int chance)
