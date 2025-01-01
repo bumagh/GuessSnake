@@ -39,13 +39,15 @@ public class PlayerGuess : MonoBehaviour
 
         if (playerGuess == correctAnswer)
         {
-            guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜对了！";
+            Tools.ShowTip("猜对了");
+            // guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜对了！";
             // 给玩家奖励或者改变游戏状态
             GameManager.instance.CompleteLevel();
         }
         else
         {
-            guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜错了！";
+            Tools.ShowTip("猜错了");
+            // guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜错了！";
             // 提供重试或返回选项
         }
     }
