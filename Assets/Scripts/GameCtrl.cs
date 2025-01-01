@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class GameCtrl : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Button startBtn;
+    private Button backBtn;
     void Start()
     {
-        startBtn = transform.Find("Panel/StartBtn").GetComponent<Button>();
-        startBtn.onClick.AddListener(() =>
+        backBtn = transform.Find("Panel/BackBtn").GetComponent<Button>();
+        backBtn.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Login");
         });
     }
 
