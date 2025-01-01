@@ -25,6 +25,7 @@ public class PlayerGuess : MonoBehaviour
                 if (clickedSnake != null)
                 {
                     CheckGuess(clickedSnake);
+                    clickedSnake.HideSnake(false);
                 }
             }
         }

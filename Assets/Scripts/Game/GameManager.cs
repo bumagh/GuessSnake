@@ -8,14 +8,16 @@ public class GameManager : MonoBehaviour
     public GameObject levelCompletePanel;  // 完成关卡后的UI面板
     public static GameManager instance;
     private int currentLevel = 1;
-
+    public bool isGaming = false;
     void Start()
     {
         instance = this;
         // levelCompletePanel.SetActive(false);
+        new WaitForSeconds(1);
+        snakeManager.AddNewSnake();
     }
 
-    public  void CompleteLevel()
+    public void CompleteLevel()
     {
         // levelCompletePanel.SetActive(true);  // 显示关卡完成界面
 
