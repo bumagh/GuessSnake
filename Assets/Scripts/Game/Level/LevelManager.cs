@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -10,8 +11,7 @@ public class LevelManager : MonoBehaviour
     public float difficultyIncreaseInterval = 10f;  // 每10秒增加难度
     private float difficultyTimer;
     private int currentLevel = 1;
-    public string configFilePath = "Assets/Resources/Config/levelConfig.json";
-    public List<LevelConfig> levelConfigs;
+    public string configFilePath = "Config/levelConfig.json";
     void Awake()
     {
         instance = this;
@@ -53,20 +53,12 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
-        LoadLevelConfigs();
         LoadLevel(PlayerData.GetInt(PlayerData.LevelId, 1));  // 加载第1关
-    }
-
-    void LoadLevelConfigs()
-    {
-        string json = File.ReadAllText(configFilePath);
-        LevelConfigList configList = JsonUtility.FromJson<LevelConfigList>(json);
-        levelConfigs = configList.levels;
     }
 
     public void LoadLevel(int level)
     {
-        LevelConfig currentLevel = levelConfigs.Find(l => l.level == level);
+        LevelConfig currentLevel = ConfigData.levelConfigs.Find(l => l.level == level);
 
         if (currentLevel != null)
         {

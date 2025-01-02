@@ -24,7 +24,7 @@ public class GameCtrl : MonoBehaviour
     {
         if (show)
         {
-            levelQuesText.text = LevelManager.instance.levelConfigs.Find(ele => ele.level == PlayerData.GetInt(PlayerData.LevelId, 1)).levelQues;
+            levelQuesText.text = ConfigData.levelConfigs.Find(ele => ele.level == PlayerData.GetInt(PlayerData.LevelId, 1)).levelQues;
             levelQuesPanel.transform.localScale = Vector3.one;
             StartCoroutine(DelayedAction());
         }

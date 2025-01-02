@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public string configFilePath = "Assets/Resources/itemConfig.json";  // 配置文件路径
+    public string configFilePath = "Config/itemConfig";  // 配置文件路径
     public List<ItemConfig> itemConfigs;
 
     void Start()
@@ -14,7 +14,7 @@ public class ItemManager : MonoBehaviour
 
     void LoadItemConfigs()
     {
-        string json = File.ReadAllText(configFilePath);
+        string json =Resources.Load<TextAsset>(configFilePath).text;
         ItemConfigList configList = JsonUtility.FromJson<ItemConfigList>(json);
         itemConfigs = configList.items;
 

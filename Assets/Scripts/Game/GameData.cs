@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,10 @@ public class GameData : MonoSingleton<GameData>
 #endif
     }
 
+    async void Start()
+    {
+        await ConfigData.LoadConfigsAsync();
+    }
     public void InitPlayerData()
     {
         if (PlayerData.GetInt(PlayerData.LevelId, 1) == 1)

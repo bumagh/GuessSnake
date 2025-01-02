@@ -36,8 +36,8 @@ public class PlayerGuess : MonoBehaviour
     void CheckGuess(Snake guessedSnake)
     {
         int level = PlayerData.GetInt(PlayerData.LevelId, 1);
-        LevelConfig levelConfig = LevelManager.instance.levelConfigs.Find(l => l.level == level);
-        SnakeConfig snakeConfig = SnakeConfigManager.instance.snakeConfigs.Find(l => l.id == guessedSnake.snakeId);
+        LevelConfig levelConfig = ConfigData.levelConfigs.Find(l => l.level == level);
+        SnakeConfig snakeConfig = ConfigData.snakeConfigs.Find(l => l.id == guessedSnake.snakeId);
         int curSnakeId = guessedSnake.snakeId;
         string playerGuess = guessedSnake.snakeName;
         string correctAnswer = "CuteSnake";  // 假设正确的答案是蛇2，实际可以从动态生成的蛇名称中获取

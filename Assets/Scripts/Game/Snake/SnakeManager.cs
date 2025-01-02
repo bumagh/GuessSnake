@@ -41,17 +41,15 @@ public class SnakeManager : MonoBehaviour
 
     internal void AddNewSnake(LevelConfig levelConfig)
     {
-        if (!SnakeConfigManager.instance.isLoad)
-            SnakeConfigManager.instance.LoadSnakeConfig();
-        int snakeCounts = SnakeConfigManager.instance.snakeConfigs.Count;
+        int snakeCounts = ConfigData.snakeConfigs.Count;
         Vector3 pos1 = new Vector3(-1.71f, 3.74f, 0);//-1.71,0,1.87
         Vector3 pos2 = new Vector3(0, 3.74f, 0);//-1.71,0,1.87
         Vector3 pos3 = new Vector3(1.87f, 3.74f, 0);//-1.71,0,1.87
         if (levelConfig.level == 1)
         {
-            for (int i = 0; i < SnakeConfigManager.instance.snakeConfigs.Count; i++)
+            for (int i = 0; i < ConfigData.snakeConfigs.Count; i++)
             {
-                var config = SnakeConfigManager.instance.snakeConfigs[i];
+                var config = ConfigData.snakeConfigs[i];
                 AddSnake(levelConfig, new Vector3(pos1.x / 2 + i % 3 * 1.4f, 3.74f - i / 3 * 1.9f, 0), config);
             }
         }
@@ -66,9 +64,9 @@ public class SnakeManager : MonoBehaviour
                 if (snakeIds.Length == 2)
                 {
                     selectId = int.Parse(snakeIds[0]);
-                    int excludeIndex = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == selectId);
-                    var config0 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == selectId);
-                    var config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, new List<int>() { excludeIndex });
+                    int excludeIndex = ConfigData.snakeConfigs.FindIndex(s => s.id == selectId);
+                    var config0 = ConfigData.snakeConfigs.Find(ele => ele.id == selectId);
+                    var config1 = RandomSelector.RandomSelectExclude(ConfigData.snakeConfigs, new List<int>() { excludeIndex });
                     AddSnake(levelConfig, positions[0], config0);
                     AddSnake(levelConfig, positions[2], config1);
                 }
@@ -81,19 +79,19 @@ public class SnakeManager : MonoBehaviour
                 {
                     selectIds.Add(int.Parse(snakeIds[0]));
                     SnakeConfig config1, config2;
-                    int excludeIndex1 = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == int.Parse(snakeIds[0]));
+                    int excludeIndex1 = ConfigData.snakeConfigs.FindIndex(s => s.id == int.Parse(snakeIds[0]));
                     excludeIdxs.Add(excludeIndex1);
-                    var config0 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[0]));
+                    var config0 = ConfigData.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[0]));
                     if (int.Parse(snakeIds[1]) == 0)
-                        config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, excludeIdxs);
+                        config1 = RandomSelector.RandomSelectExclude(ConfigData.snakeConfigs, excludeIdxs);
                     else
-                        config1 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
-                    int excludeIndex2 = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == config1.id);
+                        config1 = ConfigData.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
+                    int excludeIndex2 = ConfigData.snakeConfigs.FindIndex(s => s.id == config1.id);
                     excludeIdxs.Add(excludeIndex2);
                     if (int.Parse(snakeIds[2]) == 0)
-                        config2 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, excludeIdxs);
+                        config2 = RandomSelector.RandomSelectExclude(ConfigData.snakeConfigs, excludeIdxs);
                     else
-                        config2 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
+                        config2 = ConfigData.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
                     AddSnake(levelConfig, positions[0], config0);
                     AddSnake(levelConfig, positions[1], config1);
                     AddSnake(levelConfig, positions[2], config2);

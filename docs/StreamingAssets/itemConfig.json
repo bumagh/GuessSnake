@@ -1,0 +1,64 @@
+{
+    "Sheet1": [
+        {
+            "itemId": 1,
+            "name": "提示",
+            "description": "显示当前关卡中所有蛇的一部分特征，帮助猜测。",
+            "type": "Hint",
+            "icon": "Icons/Hint.png",
+            "duration": 5,
+            "effectStrength": 50,
+            "spawnRate": 30,
+            "unlockLevel": 1,
+            "additionalNote": "初始解锁道具，适合新手使用。"
+        },
+        {
+            "itemId": 2,
+            "name": "暂停",
+            "description": "暂停游戏 3 秒钟，让玩家有更多时间观察蛇。",
+            "type": "Pause",
+            "icon": "Icons/Pause.png",
+            "duration": 3,
+            "effectStrength": 0,
+            "spawnRate": 20,
+            "unlockLevel": 2,
+            "additionalNote": "中级道具，用于应对紧急情况。"
+        },
+        {
+            "itemId": 3,
+            "name": "减速",
+            "description": "降低蛇的移动速度，持续 10 秒。",
+            "type": "SlowMotion",
+            "icon": "Icons/SlowMotion.png",
+            "duration": 10,
+            "effectStrength": 0.5,
+            "spawnRate": 15,
+            "unlockLevel": 5,
+            "additionalNote": "适合高难度关卡使用。"
+        },
+        {
+            "itemId": 4,
+            "name": "加速",
+            "description": "临时加速蛇的移动，增加挑战性。",
+            "type": "SpeedBoost",
+            "icon": "Icons/SpeedBoost.png",
+            "duration": 5,
+            "effectStrength": 2.0,
+            "spawnRate": 10,
+            "unlockLevel": 8,
+            "additionalNote": "适合想要快速完成关卡的玩家。"
+        },
+        {
+            "itemId": 5,
+            "name": "清屏",
+            "description": "清除当前屏幕上的所有蛇并立即判定通过。",
+            "type": "ClearScreen",
+            "icon": "Icons/ClearScreen.png",
+            "duration": 0,
+            "effectStrength": 0,
+            "spawnRate": 5,
+            "unlockLevel": 15,
+            "additionalNote": "高级道具，需谨慎使用。"
+        }
+    ]
+}
