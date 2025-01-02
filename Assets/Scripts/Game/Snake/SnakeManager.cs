@@ -70,10 +70,11 @@ public class SnakeManager : MonoBehaviour
             snake.moveSpeed = config.speed;
             // 其他设置
             snake.exchangeRate = config.exchangeRate;
+            snakes.Add(snake);
         }
 
     }
-    void ClearSnakes()
+    public void ClearSnakes()
     {
         foreach (var item in snakes)
         {

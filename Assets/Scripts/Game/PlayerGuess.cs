@@ -48,7 +48,8 @@ public class PlayerGuess : MonoBehaviour
             // Tools.ShowTip("猜错了");
             Tools.ShowConfirm("猜错了,再试一次吧!", () =>
             {
-
+                snakeManager.ClearSnakes();
+                LevelManager.instance.LoadLevel(PlayerData.GetInt(PlayerData.LevelId,1));
             });
             // guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜错了！";
             // 提供重试或返回选项

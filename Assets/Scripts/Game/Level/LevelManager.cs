@@ -5,11 +5,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public SnakeManager snakeManager;  // 控制蛇的管理器
+    public static LevelManager instance;
     public float difficultyIncreaseInterval = 10f;  // 每10秒增加难度
     private float difficultyTimer;
     private int currentLevel = 1;
     public string configFilePath = "Assets/Resources/Config/levelConfig.json";
     public List<LevelConfig> levelConfigs;
+    void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
         // difficultyTimer += Time.deltaTime;
@@ -54,7 +59,7 @@ public class LevelManager : MonoBehaviour
         levelConfigs = configList.levels;
     }
 
-    void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
         LevelConfig currentLevel = levelConfigs.Find(l => l.level == level);
 
