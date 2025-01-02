@@ -68,7 +68,7 @@ public class SnakeManager : MonoBehaviour
                     selectId = int.Parse(snakeIds[0]);
                     int excludeIndex = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == selectId);
                     var config0 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == selectId);
-                    var config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, new List<int>(excludeIndex));
+                    var config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, new List<int>() { excludeIndex });
                     AddSnake(levelConfig, positions[0], config0);
                     AddSnake(levelConfig, positions[2], config1);
                 }

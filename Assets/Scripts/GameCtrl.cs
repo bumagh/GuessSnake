@@ -54,7 +54,7 @@ public class GameCtrl : MonoBehaviour
         levelQuesText = transform.Find("LevelQuesPanel/Content").GetComponent<Text>();
         backBtn.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Login");
+            SceneManager.LoadScene("Arcade");
         });
         itemBtn.onClick.AddListener(() =>
         {
