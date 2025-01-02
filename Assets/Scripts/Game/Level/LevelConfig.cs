@@ -7,8 +7,13 @@ public class LevelConfig
 {
     public int level;
     public string theme;
+    public string levelQues;
+    public string levelAns;
+    public string reward;
     public string background;
     public int snakeCount;
+    public int showType;//0static1move
+    public string snakeIds;//0static1move
     public float snakeSpeed;
     public float exchangeRate;
     public string specialItem;

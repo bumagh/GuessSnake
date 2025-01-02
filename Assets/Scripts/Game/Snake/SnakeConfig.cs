@@ -9,7 +9,14 @@ public class SnakeConfig
     public string name;
     public string appearance;
     public float speed;
-    public float exchangeRate;
+    public int Cute;
+    public int Long;
+    public int Toxicity;
+    public int Intelligence;
+    public int Wealth;
+    public int Weight;
+    public int Strength;
+    public int Intimidation;
 }
 
 [System.Serializable]

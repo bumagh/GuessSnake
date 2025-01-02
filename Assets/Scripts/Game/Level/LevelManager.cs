@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         if (currentLevel % 3 == 0)
         {
             // 解锁新蛇
-            snakeManager.AddNewSnake();
+            // snakeManager.AddNewSnake();
         }
     }
 
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevelConfigs();
         new WaitForSeconds(1);
-        LoadLevel(1);  // 加载第1关
+        LoadLevel(PlayerData.GetInt(PlayerData.LevelId,1));  // 加载第1关
     }
 
     void LoadLevelConfigs()
@@ -65,14 +65,14 @@ public class LevelManager : MonoBehaviour
 
         if (currentLevel != null)
         {
-            Debug.Log($"加载关卡: {currentLevel.level} - {currentLevel.theme}");
+            // Debug.Log($"加载关卡: {currentLevel.level} - {currentLevel.theme}");
             EventManager.DispatchEvent<string, string>(EventName.GameUISetLevelInfo, currentLevel.level.ToString(), currentLevel.theme);
             // 设置背景
-            SetBackground(currentLevel.background);
+            // SetBackground(currentLevel.background);
             // 生成蛇
-            GenerateSnakes(currentLevel.snakeCount, currentLevel.snakeSpeed, currentLevel.exchangeRate);
+            GenerateSnakes(currentLevel);
             // 设置道具
-            SetupSpecialItem(currentLevel.specialItem, currentLevel.specialItemChance);
+            // SetupSpecialItem(currentLevel.specialItem, currentLevel.specialItemChance);
         }
         else
         {
@@ -87,9 +87,9 @@ public class LevelManager : MonoBehaviour
         // 示例代码：GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(backgroundName);
     }
 
-    void GenerateSnakes(int count, float speed, float exchangeRate)
+    void GenerateSnakes(LevelConfig levelConfig)
     {
-        SnakeManager.instance.AddNewSnake(count);
+        SnakeManager.instance.AddNewSnake(levelConfig);
         // Debug.Log($"生成蛇 {i + 1}，速度: {speed}，交换频率: {exchangeRate}");
         // 示例代码：Instantiate(snakePrefab, position, Quaternion.identity).GetComponent<Snake>().Setup(speed, exchangeRate);
     }

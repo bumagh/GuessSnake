@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    public int snakeId;  // 蛇的名字（例如 "蛇1", "蛇2" 或网络热梗）
     public string snakeName;  // 蛇的名字（例如 "蛇1", "蛇2" 或网络热梗）
     public Vector2 moveDirection;  // 蛇的移动方向
     public float moveSpeed = 2f;  // 蛇的移动速度
