@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerGuess : MonoBehaviour
 {
@@ -52,7 +53,18 @@ public class PlayerGuess : MonoBehaviour
                 Tools.ShowReward(snakeConfig.name, "Sprites/" + snakeConfig.appearance, () =>
                      {
                          snakeManager.ClearSnakes();
-                         LevelManager.instance.LoadLevel(level + 1);
+                         if (level >= 10)
+                         {
+                             Tools.ShowConfirm("恭喜全部通关,请返回首页参加pk吧,点击确认立即返回", () =>
+                             {
+                                 SceneManager.LoadScene("Arcade");
+                             }, () =>
+                             {
+                                 SceneManager.LoadScene("Arcade");
+                             });
+                         }
+                         else
+                             LevelManager.instance.LoadLevel(level + 1);
 
                      });
             }, () =>
@@ -60,7 +72,12 @@ public class PlayerGuess : MonoBehaviour
                 Tools.ShowReward(snakeConfig.name, "Sprites/" + snakeConfig.appearance, () =>
                     {
                         snakeManager.ClearSnakes();
-                        LevelManager.instance.LoadLevel(level + 1);
+                        if (level >= 10)
+                        {
+
+                        }
+                        else
+                            LevelManager.instance.LoadLevel(level + 1);
 
                     });
             });

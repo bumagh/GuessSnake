@@ -55,7 +55,6 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevelConfigs();
         LoadLevel(PlayerData.GetInt(PlayerData.LevelId, 1));  // 加载第1关
-        StartCoroutine(DelayedAction());
     }
 
     void LoadLevelConfigs()
@@ -86,6 +85,7 @@ public class LevelManager : MonoBehaviour
             Tools.ShowTip("您已通关");
         }
         GameManager.instance.isGaming = true;
+        StartCoroutine(DelayedAction());
     }
 
     void SetBackground(string backgroundName)

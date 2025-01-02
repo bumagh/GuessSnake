@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SnakeManager : MonoBehaviour
@@ -42,6 +43,7 @@ public class SnakeManager : MonoBehaviour
     {
         if (!SnakeConfigManager.instance.isLoad)
             SnakeConfigManager.instance.LoadSnakeConfig();
+        int snakeCounts = SnakeConfigManager.instance.snakeConfigs.Count;
         Vector3 pos1 = new Vector3(-1.71f, 3.74f, 0);//-1.71,0,1.87
         Vector3 pos2 = new Vector3(0, 3.74f, 0);//-1.71,0,1.87
         Vector3 pos3 = new Vector3(1.87f, 3.74f, 0);//-1.71,0,1.87
@@ -50,13 +52,56 @@ public class SnakeManager : MonoBehaviour
             for (int i = 0; i < SnakeConfigManager.instance.snakeConfigs.Count; i++)
             {
                 var config = SnakeConfigManager.instance.snakeConfigs[i];
-                AddSnake(levelConfig, new Vector3(pos1.x/2 + i % 3 * 1.4f, 3.74f - i / 3 * 1.9f, 0), config);
+                AddSnake(levelConfig, new Vector3(pos1.x / 2 + i % 3 * 1.4f, 3.74f - i / 3 * 1.9f, 0), config);
             }
         }
-        // for (int i = 0; i < count; i++)
-        // {
+        else
+        {
+            List<Vector3> positions = new List<Vector3>() { pos1, pos2, pos3 };
+            RandomSwap.RandomSwapPositions(ref positions);
+            var snakeIds = levelConfig.snakeIds.Split("|");
+            if (levelConfig.snakeCount == 2)
+            {
+                int selectId = 1;
+                if (snakeIds.Length == 2)
+                {
+                    selectId = int.Parse(snakeIds[0]);
+                    int excludeIndex = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == selectId);
+                    var config0 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == selectId);
+                    var config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, new List<int>(excludeIndex));
+                    AddSnake(levelConfig, positions[0], config0);
+                    AddSnake(levelConfig, positions[2], config1);
+                }
+            }
+            else if (levelConfig.snakeCount == 3)
+            {
+                List<int> selectIds = new List<int>();
+                List<int> excludeIdxs = new List<int>();
+                if (snakeIds.Length == 3)
+                {
+                    selectIds.Add(int.Parse(snakeIds[0]));
+                    SnakeConfig config1, config2;
+                    int excludeIndex1 = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == int.Parse(snakeIds[0]));
+                    excludeIdxs.Add(excludeIndex1);
+                    var config0 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[0]));
+                    if (int.Parse(snakeIds[1]) == 0)
+                        config1 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, excludeIdxs);
+                    else
+                        config1 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
+                    int excludeIndex2 = SnakeConfigManager.instance.snakeConfigs.FindIndex(s => s.id == config1.id);
+                    excludeIdxs.Add(excludeIndex2);
+                    if (int.Parse(snakeIds[2]) == 0)
+                        config2 = RandomSelector.RandomSelectExclude(SnakeConfigManager.instance.snakeConfigs, excludeIdxs);
+                    else
+                        config2 = SnakeConfigManager.instance.snakeConfigs.Find(ele => ele.id == int.Parse(snakeIds[1]));
+                    AddSnake(levelConfig, positions[0], config0);
+                    AddSnake(levelConfig, positions[1], config1);
+                    AddSnake(levelConfig, positions[2], config2);
+                }
+            }
 
-        // }
+        }
+
 
     }
     public void AddSnake(LevelConfig levelConfig, Vector3 pos, SnakeConfig config)
