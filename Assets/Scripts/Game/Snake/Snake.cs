@@ -33,15 +33,12 @@ public class Snake : MonoBehaviour
     {
         if (transform.position.y >= -3)
             MoveSnake();
-        else
-        {
-            if (isOver == false)
-            {
-                HideSnake(true);
-                isOver = true;
+        // if (GameManager.instance.isGaming == false)
+        // {
+        //     HideSnake(true);
+        //     isOver = true;
 
-            }
-        }
+        // }
 
     }
 

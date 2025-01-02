@@ -16,11 +16,7 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-
-        Tools.ShowConfirm("完成关卡,继续下一关", () =>
-        {
-            // LoadNextLevel();
-        });
+        PlayerData.SetInt(PlayerData.LevelId, PlayerData.GetInt(PlayerData.LevelId, 1) + 1);
     }
 
     void LoadNextLevel()

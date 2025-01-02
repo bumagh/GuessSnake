@@ -13,7 +13,7 @@ public class PlayerGuess : MonoBehaviour
     // 处理玩家的触摸输入
     void HandleTouchInput()
     {
-        if (Input.GetMouseButtonDown(0))  // 左键点击（或触摸屏幕）
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.isGaming == true)  // 左键点击（或触摸屏幕）
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             touchPosition.z = 0;  // 保持z轴为0，因为游戏是2D的
@@ -34,14 +34,37 @@ public class PlayerGuess : MonoBehaviour
     // 检查玩家的猜测
     void CheckGuess(Snake guessedSnake)
     {
+        int level = PlayerData.GetInt(PlayerData.LevelId, 1);
+        LevelConfig levelConfig = LevelManager.instance.levelConfigs.Find(l => l.level == level);
+        SnakeConfig snakeConfig = SnakeConfigManager.instance.snakeConfigs.Find(l => l.id == guessedSnake.snakeId);
+        int curSnakeId = guessedSnake.snakeId;
         string playerGuess = guessedSnake.snakeName;
         string correctAnswer = "CuteSnake";  // 假设正确的答案是蛇2，实际可以从动态生成的蛇名称中获取
-
-        if (playerGuess == correctAnswer)
+        GameManager.instance.isGaming = false;
+        if (levelConfig.levelAns == 0 || levelConfig.levelAns == curSnakeId)
         {
+
             // guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜对了！";
             // 给玩家奖励或者改变游戏状态
-            GameManager.instance.CompleteLevel();
+            Tools.ShowConfirm("恭喜过关,请领取这条独一无二的蛇作为你今后冒险的伙伴", () =>
+            {
+                GameManager.instance.CompleteLevel();
+                Tools.ShowReward(snakeConfig.name, "Sprites/" + snakeConfig.appearance, () =>
+                     {
+                         snakeManager.ClearSnakes();
+                         LevelManager.instance.LoadLevel(level + 1);
+
+                     });
+            }, () =>
+            {
+                Tools.ShowReward(snakeConfig.name, "Sprites/" + snakeConfig.appearance, () =>
+                    {
+                        snakeManager.ClearSnakes();
+                        LevelManager.instance.LoadLevel(level + 1);
+
+                    });
+            });
+
         }
         else
         {
@@ -49,7 +72,7 @@ public class PlayerGuess : MonoBehaviour
             Tools.ShowConfirm("猜错了,再试一次吧!", () =>
             {
                 snakeManager.ClearSnakes();
-                LevelManager.instance.LoadLevel(PlayerData.GetInt(PlayerData.LevelId,1));
+                LevelManager.instance.LoadLevel(level);
             });
             // guessResultText.GetComponent<UnityEngine.UI.Text>().text = "猜错了！";
             // 提供重试或返回选项

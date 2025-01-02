@@ -8,7 +8,7 @@ public class LevelConfig
     public int level;
     public string theme;
     public string levelQues;
-    public string levelAns;
+    public int levelAns;
     public string reward;
     public string background;
     public int snakeCount;

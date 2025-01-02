@@ -50,7 +50,7 @@ public class SnakeManager : MonoBehaviour
             for (int i = 0; i < SnakeConfigManager.instance.snakeConfigs.Count; i++)
             {
                 var config = SnakeConfigManager.instance.snakeConfigs[i];
-                AddSnake(levelConfig, new Vector3(pos1.x + i % 3 * 1.4f, 3.74f - i / 3 * 1.9f, 0), config);
+                AddSnake(levelConfig, new Vector3(pos1.x/2 + i % 3 * 1.4f, 3.74f - i / 3 * 1.9f, 0), config);
             }
         }
         // for (int i = 0; i < count; i++)

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -44,12 +45,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
+    IEnumerator DelayedAction()
+    {
+        // 等待 1 秒
+        yield return new WaitForSeconds(1f);
+        EventManager.DispatchEvent<bool>(EventName.GameUIShowLevelQuesPanel, true);
+    }
     void Start()
     {
         LoadLevelConfigs();
-        new WaitForSeconds(1);
-        LoadLevel(PlayerData.GetInt(PlayerData.LevelId,1));  // 加载第1关
+        LoadLevel(PlayerData.GetInt(PlayerData.LevelId, 1));  // 加载第1关
+        StartCoroutine(DelayedAction());
     }
 
     void LoadLevelConfigs()
@@ -77,7 +83,9 @@ public class LevelManager : MonoBehaviour
         else
         {
             Debug.LogError("未找到关卡配置！");
+            Tools.ShowTip("您已通关");
         }
+        GameManager.instance.isGaming = true;
     }
 
     void SetBackground(string backgroundName)

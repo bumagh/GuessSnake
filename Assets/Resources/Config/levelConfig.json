@@ -1,7 +1,7 @@
 {
     "levels": [
         {
-            "level": "1",
+            "level": 1,
             "theme": "新手试炼",
             "levelQues": "你最喜欢哪条蛇?",
             "levelAns": 0,
@@ -10,14 +10,14 @@
             "snakeCount": 0,
             "showType": 0,
             "snakeIds": 0,
-            "snakeSpeed": "1.5",
+            "snakeSpeed": "0",
             "exchangeRate": "2.0",
             "specialItem": "Hint",
             "specialItemChance": "50",
             "additionalNote": "观察蛇的颜色和动作，猜测它的名字！"
         },
         {
-            "level": "2",
+            "level": 2,
             "theme": "森林奇遇",
             "levelQues": "哪条蛇速度快?",
             "levelAns": 12,
@@ -33,7 +33,7 @@
             "additionalNote": "蛇的数量增加了，小心观察！"
         },
         {
-            "level": "3",
+            "level": 3,
             "theme": "沙漠迷踪",
             "levelQues": "哪条蛇更可爱?",
             "levelAns": 1,
@@ -49,7 +49,7 @@
             "additionalNote": "沙漠中的蛇移动更快！"
         },
         {
-            "level": "4",
+            "level": 4,
             "theme": "星空奇观",
             "levelQues": "哪条蛇身子长?",
             "levelAns": 8,
@@ -65,7 +65,7 @@
             "additionalNote": "夜空下的蛇更难分辨。"
         },
         {
-            "level": "5",
+            "level": 5,
             "theme": "海洋深处",
             "levelQues": "哪条蛇更毒?",
             "levelAns": 6,
@@ -81,7 +81,7 @@
             "additionalNote": "深海中的蛇非常狡猾。"
         },
         {
-            "level": "6",
+            "level": 6,
             "theme": "火山熔岩",
             "levelQues": "哪条蛇最聪明?",
             "levelAns": 10,
@@ -97,7 +97,7 @@
             "additionalNote": "火山熔岩中的蛇非常快！"
         },
         {
-            "level": "7",
+            "level": 7,
             "theme": "极地冒险",
             "levelQues": "哪条蛇最有钱?",
             "levelAns": 9,
@@ -113,7 +113,7 @@
             "additionalNote": "冰雪中的蛇交换频率更高。"
         },
         {
-            "level": "8",
+            "level": 8,
             "theme": "迷宫逃脱",
             "levelQues": "哪条蛇最重?",
             "levelAns": 11,
@@ -129,7 +129,7 @@
             "additionalNote": "迷宫中的蛇更喜欢交替位置。"
         },
         {
-            "level": "9",
+            "level": 9,
             "theme": "云海之巅",
             "levelQues": "哪条蛇更有力气?",
             "levelAns": 13,
@@ -145,7 +145,7 @@
             "additionalNote": "高空的蛇移动更不规律！"
         },
         {
-            "level": "10",
+            "level": 10,
             "theme": "机械迷城",
             "levelQues": "哪条蛇最吓人?",
             "levelAns": 7,
