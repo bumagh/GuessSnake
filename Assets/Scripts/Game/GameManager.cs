@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
         Tools.ShowConfirm("完成关卡,继续下一关", () =>
         {
-            LoadNextLevel();
+            // LoadNextLevel();
         });
     }
 
